@@ -1,11 +1,11 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname=siavash_database")
+conn = psycopg2.connect("dbname=postgres user=postgres password=admin_post")
 cur = conn.cursor()
 
 
 cur.execute("""
-	CREATE TABLE new_schema.Micro (
+	CREATE TABLE QIPM.Micro (
 	Micro_EntryID integer primary key,
 	MRN integer,
 	Micro_ProcedureID integer,
@@ -26,9 +26,9 @@ cur.execute("""
 conn.commit()
 
 cur.execute("""
-	COPY new_schema.Micro
+	COPY QIPM.Micro
 FROM
-    '/Users/siavashmortezavi/Documents/UCSF/file_conversion_pipeline/csv/Micro.csv' DELIMITER ',' CSV HEADER;
+    '/tmp/Micro.csv' DELIMITER ',' CSV HEADER;
 """)
 conn.commit()
 

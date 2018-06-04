@@ -1,11 +1,11 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname=siavash_database")
+conn = psycopg2.connect("dbname=postgres user=postgres password=admin_post")
 cur = conn.cursor()
 
 
 cur.execute("""
-	CREATE TABLE new_schema.Medication (
+	CREATE TABLE QIPM.Medication (
 	Medication_EntryID integer primary key,
 	MRN integer,
 	Medication_OrderMedID integer,
@@ -25,9 +25,9 @@ cur.execute("""
 conn.commit()
 
 cur.execute("""
-	COPY new_schema.Medication
+	COPY QIPM.Medication
 FROM
-    '/Users/siavashmortezavi/Documents/UCSF/file_conversion_pipeline/csv/Medication.csv' DELIMITER ',' CSV HEADER;
+    '/tmp/Medication.csv' DELIMITER ',' CSV HEADER;
 """)
 conn.commit()
 

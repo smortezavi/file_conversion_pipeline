@@ -1,11 +1,11 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname=siavash_database")
+conn = psycopg2.connect("dbname=postgres user=postgres password=admin_post")
 cur = conn.cursor()
 
 
 cur.execute("""
-	CREATE TABLE new_schema.Demographic (
+	CREATE TABLE QIPM.Demographic (
 	Deomgraphic_EntryID integer,
 	MRN integer primary key,
 	Demographic_FirstName text,
@@ -39,9 +39,9 @@ cur.execute("""
 conn.commit()
 
 cur.execute("""
-	COPY new_schema.Demographic
+	COPY  QIPM.Demographic
 FROM
-    '/Users/siavashmortezavi/Documents/UCSF/file_conversion_pipeline/csv/Demographic.csv' DELIMITER ',' CSV HEADER;
+    '/tmp/Demographic.csv' DELIMITER ',' CSV HEADER;
 """)
 conn.commit()
 

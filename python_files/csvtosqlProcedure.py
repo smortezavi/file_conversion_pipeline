@@ -1,6 +1,6 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname=siavash_database")
+conn = psycopg2.connect("dbname=postgres user=postgres password=admin_post")
 cur = conn.cursor()
 
 
@@ -22,9 +22,9 @@ cur.execute("""
 conn.commit()
 
 cur.execute("""
-	COPY new_schema.Procedure
+	COPY QIPM.Procedures
 FROM
-    '/Users/siavashmortezavi/Documents/UCSF/file_conversion_pipeline/csv/Procedure.csv' DELIMITER ',' CSV HEADER;
+    '/tmp/Procedures.csv' DELIMITER ',' CSV HEADER;
 """)
 conn.commit()
 
