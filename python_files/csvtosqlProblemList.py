@@ -11,7 +11,7 @@ cur.execute("""
 	ProblemList_Condition  text,
 	ProblemList_DateNoted date,
 	ProblemList_DateResolved date,
-	ProblemList_ICD9CM numeric
+	ProblemList_ICD9CM text
 	)
 	""")
 conn.commit()
