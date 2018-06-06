@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE new_schema.SurgicalHistory (
-	SurgicalHistory_EntryID integer primary key,
-	MRN integer,
+	SurgicalHistory_EntryID integer,
+	MRN text,
 	SurgicalHistory_ProcedureName text,
 	SurgicalHistory_Laterality text,
 	SurgicalHistory_SurgicalHxDate text,

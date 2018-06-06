@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE new_schema.Family_History (
-	FamilyHistory_EntryID integer primary key,
-	MRN integer,
+	FamilyHistory_EntryID integer,
+	MRN text,
     FamilyHistory_Problem text,
     FamilyHistory_Relation text,
 	FamilyHistory_FamilyName text,

@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE QIPM.Micro (
-	Micro_EntryID integer primary key,
-	MRN integer,
+	Micro_EntryID integer,
+	MRN text,
 	Micro_ProcedureID integer,
 	Micro_OrderDate date,
 	Micro_CollectDateTime date,

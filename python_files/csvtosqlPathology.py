@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE QIPM.Pathology (
-	Pathology_EntryID integer primary key,
-	MRN integer,
+	Pathology_EntryID integer,
+	MRN text,
 	Pathology_OrderID integer,
 	Pathology_CollectDateTime date,
 	Pathology_ResultingAgency text,

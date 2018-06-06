@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE new_schema.Procedure (
-	Procedure_EntryID integer primary key,
-	MRN integer,
+	Procedure_EntryID integer,
+	MRN text,
 	Procedure_OrderDate date,
 	Procedure_Description text,
 	Procedure_Specialty text,

@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE QIPM.Imaging (
-	Imaging_EntryID integer primary key,
-	MRN integer,
+	Imaging_EntryID integer,
+	MRN text,
 	Imaging_OrderProcID text,
     Imaging_OrderedDate date,
     Imaging_ExamDate date,

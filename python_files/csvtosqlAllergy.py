@@ -5,8 +5,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE new_schema.Allergy (
-    Encounter_UniqueID integer PRIMARY KEY,
-    MRN integer,
+    Encounter_UniqueID integer,
+    MRN text,
     Allergy_Allergen text,
 	Allergy_DateNoted date,
 	Allergy_Reaction text,

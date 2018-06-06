@@ -7,7 +7,7 @@ cur = conn.cursor()
 cur.execute("""
 	CREATE TABLE QIPM.Demographic (
 	Deomgraphic_EntryID integer,
-	MRN integer primary key,
+	MRN text primary key,
 	Demographic_FirstName text,
 	Demographic_LastName text,
 	Demographic_DOB date,

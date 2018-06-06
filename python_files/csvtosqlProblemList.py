@@ -1,13 +1,19 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname=siavash_database")
+conn = psycopg2.connect("dbname=postgres user=olivier password=qipm123")
 cur = conn.cursor()
 
 
 cur.execute("""
-	CREATE TABLE new_schema.ProblemList (
-	ProblemList_EntryID integer primary key,
-	MRN integer,
+DROP TABLE qipm.ProblemList
+""")
+
+conn.commit()
+
+cur.execute("""
+	CREATE TABLE qipm.ProblemList (
+	ProblemList_EntryID integer,
+	MRN text,
 	ProblemList_Condition  text,
 	ProblemList_DateNoted date,
 	ProblemList_DateResolved date,
@@ -17,9 +23,9 @@ cur.execute("""
 conn.commit()
 
 cur.execute("""
-	COPY new_schema.ProblemList
+	COPY qipm.ProblemList
 FROM
-    '/Users/siavashmortezavi/Documents/UCSF/file_conversion_pipeline/csv/Problem_List.csv' DELIMITER ',' CSV HEADER;
+    '/Users/olivier/Documents/Vash_Code/test/csv/Problem_List.csv' DELIMITER ',' CSV HEADER;
 """)
 conn.commit()
 

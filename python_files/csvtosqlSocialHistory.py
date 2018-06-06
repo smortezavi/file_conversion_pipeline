@@ -6,8 +6,8 @@ cur = conn.cursor()
 
 cur.execute("""
 	CREATE TABLE new_schema.SocialHistory (
-	SocialHistory_EntryID integer primary key,
-	MRN integer,
+	SocialHistory_EntryID integer,
+	MRN text,
 	SocialHistory_SmokingStatus text,
 	SocialHistory_CigarettesYN text,
 	SocialHistory_CigarsYN text,
