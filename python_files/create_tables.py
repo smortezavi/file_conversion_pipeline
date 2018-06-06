@@ -4,7 +4,6 @@ conn = psycopg2.connect("dbname=postgres user=olivier password=qipm123")
 cur = conn.cursor()
 
 
-
 cur.execute("""
 DROP TABLE qipm.Allergy
 """)
@@ -18,7 +17,9 @@ cur.execute("""
     Allergy_Allergen text,
 	Allergy_DateNoted date,
 	Allergy_Reaction text,
-	Allergy_Severity text)
+	Allergy_Severity text,
+	Allergy_DateEntryLoaded date
+	)
 	""")
 conn.commit()
 
@@ -57,7 +58,8 @@ cur.execute("""
 	Demographic_InterpreterNeeded text,
 	Demographic_Status text,
 	Demographic_DateOfDeath text,
-	Demographic_InsuranceName text
+	Demographic_InsuranceName text,
+	Demographic_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -84,25 +86,29 @@ cur.execute("""
 	Encounter_DiastolicBloodPressure numeric,
 	Encounter_Pulse numeric,
 	Encounter_Respirations numeric,
-	Encounter_Weight numeric)
+	Encounter_Weight numeric,
+	Encounter_DateEntryLoaded date
+	)
 	""")
 conn.commit()
 
 cur.execute("""
-DROP TABLE qipm.Family_History
+DROP TABLE qipm.FamilyHistory
 """)
 
 conn.commit()
 
 cur.execute("""
-	CREATE TABLE qipm.Family_History (
+	CREATE TABLE qipm.FamilyHistory (
 	FamilyHistory_EntryID integer,
 	MRN text,
     FamilyHistory_Problem text,
     FamilyHistory_Relation text,
 	FamilyHistory_FamilyName text,
 	FamilyHistory_AgeOfOnset numeric,
-	FamilyHistory_Comments text)
+	FamilyHistory_Comments text,
+	FamilyHistory_DateEntryLoaded date
+	)
 	""")
 conn.commit()
 
@@ -132,7 +138,8 @@ cur.execute("""
 	Imaging_EntryDateAndTime date,
 	Imaging_Status text,
 	Imaging_ResultNarrative text,
-	Imaging_ResultImpression text
+	Imaging_ResultImpression text,
+	Imaging_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -153,7 +160,7 @@ cur.execute("""
 	Labs_TestName text,
 	Labs_LineNumberDetails integer,
 	Labs_LabResultName text,
-	Labs_LabResultValue numeric,
+	Labs_LabResultValue text,
 	Labs_ReferenceLow numeric,
 	Labs_ReferenceHigh numeric,
 	Labs_ResultInRange text,
@@ -163,7 +170,8 @@ cur.execute("""
 	Labs_ResultingLab text,
 	Labs_OrderingProvider text,
 	Labs_OrderingProviderSpecialty text,
-	Labs_OrderStatus text
+	Labs_OrderStatus text,
+	Labs_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -184,7 +192,8 @@ cur.execute("""
 	MedicalHistory_MedHistDate text,
 	MedicalHistory_Comments text,
 	MedicalHistory_ConctactDate date,
-	MedicalHistory_Line integer
+	MedicalHistory_Line integer,
+	MedicalHistory_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -210,7 +219,8 @@ cur.execute("""
 	Medication_Form text,
 	Medication_Route text,
 	Medication_TheraClass text,
-	Medication_Action text
+	Medication_Action text,
+	Medication_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -237,7 +247,8 @@ cur.execute("""
 	Micro_CultureComment text,
 	Micro_OrderStatus text,
 	Micro_Component text,
-	Micro_Result text
+	Micro_Result text,
+	Micro_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -261,7 +272,8 @@ cur.execute("""
 	Notes_Author text,
 	Notes_AuthorType text,
 	Notes_Status text,
-	Notes_NoteContent text
+	Notes_NoteContent text,
+	Notes_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -287,7 +299,8 @@ cur.execute("""
 	Pathology_OrderingProvider text,
 	Pathology_OrderingProviderSpecialty text,
 	Pathology_Impression text,
-	Pathology_Comment text
+	Pathology_Comment text,
+	Pathology_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -305,7 +318,8 @@ cur.execute("""
 	ProblemList_Condition  text,
 	ProblemList_DateNoted date,
 	ProblemList_DateResolved date,
-	ProblemList_ICD9CM text
+	ProblemList_ICD9CM text,
+	ProblemList_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -328,7 +342,8 @@ cur.execute("""
 	Procedure_ResultDateTime date,
 	Procedure_ProcedureNote text,
 	Procedure_OrderQuestions text,
-	Procedure_OrderProcedureID integer
+	Procedure_OrderProcedureID integer,
+	Procedure_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -359,7 +374,8 @@ cur.execute("""
 	SocialHistory_IllicitDrugComment text,
 	SocialHistory_SexuallyActiveYN text,
 	SocialHistory_PatEncCsnID integer,
-	SocialHistory_ContactDate date
+	SocialHistory_ContactDate date,
+	SocialHistory_DateEntryLoaded date
 	)
 	""")
 conn.commit()
@@ -377,7 +393,8 @@ cur.execute("""
 	SurgicalHistory_ProcedureName text,
 	SurgicalHistory_Laterality text,
 	SurgicalHistory_SurgicalHxDate text,
-	SurgicalHistory_Comments text
+	SurgicalHistory_Comments text,
+	SurgicalHistory_DateEntryLoaded date
 	)
 	""")
 conn.commit()

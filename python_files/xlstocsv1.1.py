@@ -2,28 +2,10 @@ import pandas as pd
 import sys
 import os
 import psycopg2
+import datetime
 
 conn = psycopg2.connect("dbname=postgres user=olivier password=qipm123")
 cur = conn.cursor()
-
-{'Allergy',
- 'Encounters',
- 'Family',
- 'Imaging',
- 'Labs',
- 'Medical',
- 'Medication',
- 'Micro',
- 'Notes',
- 'Pathology',
- 'Patient',
- 'Problem',
- 'Procedures',
- 'Social',
- 'Surgical'}
-
-file_path = ''
-
 
 
 def xls_to_csv(path, destination, file):
@@ -36,17 +18,24 @@ def xls_to_csv(path, destination, file):
 	print(f'converting excel file with name {file} and {len(sheets)} sheets into a csv file with 1 sheet')
 
 	if len(sheets) == 1:
-	    xls.parse(sheets[0]).to_csv(destination + file.split()[2] + '.csv', encoding = 'utf-8')
+		final_df = xls.parse(sheets[0])
+		final_df['time_stamp'] = str(datetime.datetime.now())
+		print(final_df.head(2))
+		final_df.to_csv(destination + file.split()[2] + '.csv', encoding = 'utf-8')
 	else:
 	    final_df = xls.parse(sheets[0])
 	    headers = final_df.columns
 	    for i in range(1, len(sheets)):
 	        temp_df = xls.parse(sheets[i], header=None, names=headers)
 	        final_df = pd.concat([final_df, temp_df], ignore_index=True)
+	    final_df['time_stamp'] = str(datetime.datetime.now())
+	    print('i got here')
+	    print(final_df.head(2))
 	    final_df.to_csv(destination + file.split()[2] + '.csv', encoding = 'utf-8')
 	print('done with csv conversion')
 	print('begin loading into data base')
-	file_path = destination + file.split()[2] + '.csv'
+	file_path = "'" + destination + file.split()[2] + '.csv' + "'"
+	
 	
 	table_to_sql_dict = {'Allergy':f"COPY qipm.Allergy FROM {file_path} DELIMITER ',' CSV HEADER;",
  'Encounters':f"COPY qipm.Encounters FROM {file_path} DELIMITER ',' CSV HEADER;",
@@ -84,3 +73,4 @@ if __name__ == "__main__":
 	DEST = sys.argv[2]
 	xls_files = os.listdir(PATH)
 	dir_xls_to_csv(PATH, DEST, xls_files)
+	conn.close()
