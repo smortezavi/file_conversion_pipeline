@@ -7,6 +7,6 @@ You only need to look at the two files in the bottom.
 
 https://github.com/smortezavi/file_conversion_pipeline/blob/master/python_files/create_tables.py
 
-#DATA INPUT
+#DATA CONVERSION AND INPUT
 
 https://github.com/smortezavi/file_conversion_pipeline/blob/master/python_files/xlsxtocsv1.1.py
